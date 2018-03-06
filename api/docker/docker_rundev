@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ABSOLUTE_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+source $ABSOLUTE_PATH/config
+
+arguments=""
+for var in "$@"
+do
+    arguments="$arguments -e $var"
+done
+
+# Create the container
+docker run -d \
+    --name $CONTAINER_NAME \
+    -e APP_DEBUG=true \
+    $arguments \
+    -v $ABSOLUTE_PATH/../lumen:/var/www/html \
+    $CONTAINER_TAG:$CONTAINER_VERSION

@@ -1,0 +1,3 @@
+CONTAINER_NAME=medlem.makerspace.se-api
+CONTAINER_TAG=makerspace/medlem.makerspace.se-api
+CONTAINER_VERSION=1.0
