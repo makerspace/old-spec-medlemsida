@@ -1,0 +1,43 @@
+title medlem.makerspace.se
+
+Medlem->Shop: Medlem fyller i sin E-postadress i ett formulär
+Shop->Mail: Mail skickas via extern provider
+Mail->Medlem: Medlem får ett mail med länk för engångsinloggning
+note right of Shop: Ingen behov av databas. Länken innehåller\nen krypterad E-postaddress
+Medlem->Shop: Medlem loggar in via länken
+Shop->MakerAdmin: Sök på medlems E-post
+
+alt Befintlig medlem
+    MakerAdmin->Shop: 1 träffar
+    note right of Shop: Personuppgifter sparas i en session
+else Ny medlem
+    MakerAdmin->Shop: 0 träffar
+    note right of Shop: Detta kan bero på att medlem fyllt i fel\nE-post. Upplys medlem om detta.
+    Shop->Medlem: Visa registreringsformulär
+    Medlem->Shop: Medlem fyller i personuppgifter
+    note right of Shop: Personuppgifter sparas i en session
+end
+
+
+
+
+opt Förläng medlemskap?
+    Medlem->Shop: Lägg till ett år i kundvagnen
+end
+
+opt Förläng labbavgift?
+    Medlem->Shop: Lägg till X månader i kundvagnen
+end
+
+Shop->Medlem: Kundvagn visas för medlem
+Medlem->Makerpay: Medlem går till betalsida
+Makerpay->Shop: Bekräftelse på betalning
+
+opt Ny medlem?
+    Shop->MakerAdmin: Skapa ny medlem
+    MakerAdmin->Shop: Hämta medlemsnummer
+end
+
+Shop->Medlem: Visa godkänt kvitto för medlem
+
+note right of Shop: Session med personuppgifter\nrensas automatiskt efter 24h
