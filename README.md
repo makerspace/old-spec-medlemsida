@@ -1,4 +1,4 @@
-medlem.makerspace.se
+Gamla tankar kring en betalsida för Stockholm Makerspace
 ====================
 Som ett första steg gör vi absolut minsta möjliga som krävs för att ersätta Tictail. Dvs en enkel webshop som inte kan presentera några slutdatum eller liknande för medlemmen. Den stora skillnaden blir att medlemmen först fyller i sin E-post och får en engånginloggning via mail. På så vis kan köpet kopplas till en specifik medlem.
 
